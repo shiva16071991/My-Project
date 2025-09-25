@@ -21,10 +21,10 @@ import com.example.demo.Repository.CustomerRepository;
 @Service
 public class CustomerBookService {
 
-    private BookRepository bookRepository;
-    private CustomerRepository customerRepository;
-    private AddressRepository addressRepository;
-    private CustomerBookAuditRepository customerBookAuditRepository;
+    private final BookRepository bookRepository;
+    private final CustomerRepository customerRepository;
+    private final AddressRepository addressRepository;
+    private final CustomerBookAuditRepository customerBookAuditRepository;
 
 
     public CustomerBookService(BookRepository bookRepository, CustomerRepository customerRepository, AddressRepository addressRepository, CustomerBookAuditRepository customerBookAuditRepository) {
@@ -69,7 +69,7 @@ public class CustomerBookService {
         return null;
     }
 
-   public List<Customer> serachCustomersByBookName(String bookName){
+   public List<Customer> searchCustomersByBookName(String bookName){
     List<Customer> customerList = new ArrayList<>();
     Book book = bookRepository.findByBookName(bookName);
     List<CustomerBookAudit> list = customerBookAuditRepository.findByBookId(book.getId());
