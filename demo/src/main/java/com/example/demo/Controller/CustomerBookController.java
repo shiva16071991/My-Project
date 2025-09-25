@@ -2,8 +2,6 @@ package com.example.demo.Controller;
 
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +15,7 @@ import com.example.demo.Service.CustomerBookService;
 @RequestMapping("/book/api")
 public class CustomerBookController {
 
-    private CustomerBookService customerBookService;
+    private final CustomerBookService customerBookService;
 
 
     public CustomerBookController(CustomerBookService customerBookService) {
@@ -36,6 +34,12 @@ public class CustomerBookController {
         return ResponseEntity.ok(customerBookService.assignBookToCustomer(book, customerId, days));
     } 
 
-    
+    public ResponseEntity<List<Customer>> searchCustomersByBookName(String bookName){
+        return ResponseEntity.ok(customerBookService.searchCustomersByBookName(bookName));
+    }
+
+    public ResponseEntity<List<Customer>> searchCustomersByCategory(String category){
+        return ResponseEntity.ok(customerBookService.searchCustomersByCategory(category));
+    }
 
 }
